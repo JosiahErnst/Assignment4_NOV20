@@ -10,7 +10,9 @@ namespace Assignment4
 {
     public partial class Logon : System.Web.UI.Page
     {
-        string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bdcar\\source\\repos\\Assignment4_NOV20\\App_Data\\KarateSchool(1).mdf;Integrated Security=True;Connect Timeout=30";
+        //  string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bdcar\\source\\repos\\Assignment4_NOV20\\App_Data\\KarateSchool(1).mdf;Integrated Security=True;Connect Timeout=30";
+        string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\aesch\\OneDrive\\Documents\\GitHub\\Assignment4_Team\\Assignment4\\App_Data\\KarateSchool(1).mdf;Integrated Security=True;Connect Timeout=30";
+        
         KarateDataContext dbcon;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,14 +55,14 @@ namespace Assignment4
 
                 FormsAuthentication.RedirectFromLoginPage(HttpContext.Current.Session["nUserName"].ToString(), true);
 
-                Response.Redirect("~/Member.aspx");
+                Response.Redirect("~/MembersKR/memberspage.aspx");
             }
             else if (myUser != null && HttpContext.Current.Session["userType"].ToString().Trim() == "Instructor")
             {
 
                 FormsAuthentication.RedirectFromLoginPage(HttpContext.Current.Session["nUserName"].ToString(), true);
 
-                Response.Redirect("~/Instructor.aspx");
+                Response.Redirect("~/InstructorsKR/instructorpage.aspx");
             }
             else
                 Response.Redirect("Logon.aspx", true);
