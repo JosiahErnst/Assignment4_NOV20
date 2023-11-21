@@ -10,7 +10,7 @@ namespace Assignment4
 {
     public partial class Logon : System.Web.UI.Page
     {
-        string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bdcar\\source\\repos\\Assignment4_NOV20\\App_Data\\KarateSchool(1).mdf;Integrated Security=True;Connect Timeout=30";
+        string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bdcar\\Downloads\\KarateSchool(1)\\KarateSchool(5).mdf;Integrated Security=True;Connect Timeout=30";
         KarateDataContext dbcon;
         protected void Page_Load(object sender, EventArgs e)
         {
