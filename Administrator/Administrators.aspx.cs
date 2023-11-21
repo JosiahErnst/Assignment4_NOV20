@@ -18,6 +18,7 @@ namespace Assignment4.Administrator
         {
             dbcon = new KarateDataContext(conn);
 
+            // security put in place
             if (HttpContext.Current.Session["userType"].ToString().Trim() == "Instructor" ||
                     HttpContext.Current.Session["userType"].ToString().Trim() == "Member")
             {
@@ -34,6 +35,7 @@ namespace Assignment4.Administrator
 
         public void ShowAllRecords()
         {
+            // tables shown in webpage
             var members =
                     from member in dbcon.Members
                     select new
@@ -67,6 +69,7 @@ namespace Assignment4.Administrator
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
+            // netuser added
             NetUser myuser = new NetUser();
             myuser.UserName = TextBox1.Text;
             myuser.UserPassword = TextBox2.Text;
@@ -78,7 +81,7 @@ namespace Assignment4.Administrator
             NetUser newUser = (from x in dbcon.NetUsers
                                where x.UserName == TextBox1.Text
                                select x).First();
-
+            // member added
             Member mymember = new Member();
             mymember.Member_UserID = newUser.UserID;
             mymember.MemberFirstName = TextBox3.Text;
@@ -90,6 +93,7 @@ namespace Assignment4.Administrator
             dbcon.Members.InsertOnSubmit(mymember);
             dbcon.SubmitChanges();
 
+            // section record added
             Section mysection = new Section();
             mysection.SectionName = DropDownList1.SelectedItem.Text;
             mysection.Member_ID = mymember.Member_UserID;
@@ -105,6 +109,7 @@ namespace Assignment4.Administrator
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            // netuser added
             NetUser myuser = new NetUser();
             myuser.UserName = TextBox8.Text;
             myuser.UserPassword = TextBox9.Text;
@@ -117,6 +122,7 @@ namespace Assignment4.Administrator
                                where x.UserName == TextBox8.Text
                                select x).First();
 
+            // instructor added
             Instructor myinstructor = new Instructor();
             myinstructor.InstructorID = newUser.UserID;
             myinstructor.InstructorFirstName = TextBox10.Text;
@@ -124,6 +130,31 @@ namespace Assignment4.Administrator
             myinstructor.InstructorPhoneNumber = TextBox12.Text;
 
             dbcon.Instructors.InsertOnSubmit(myinstructor);
+            dbcon.SubmitChanges();
+
+            ShowAllRecords();
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            // record deleted from section
+            int id = Convert.ToInt32(TextBox13.Text);
+
+            Section deletedsection = (from x in dbcon.Sections where x.Member_ID == id select x).First();
+
+            dbcon.Sections.DeleteOnSubmit(deletedsection);
+            dbcon.SubmitChanges();
+
+            // deleted from  member
+            Member deletedmember = (from x in dbcon.Members where x.Member_UserID == id select x).First();
+
+            dbcon.Members.DeleteOnSubmit(deletedmember);
+            dbcon.SubmitChanges();
+
+            // deleted from user
+            NetUser deleteduser = (from x in dbcon.NetUsers where x.UserID == id select x).First();
+
+            dbcon.NetUsers.DeleteOnSubmit(deleteduser);
             dbcon.SubmitChanges();
 
             ShowAllRecords();

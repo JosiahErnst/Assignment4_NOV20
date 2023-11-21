@@ -53,7 +53,7 @@
         <asp:TextBox ID="TextBox13" runat="server"></asp:TextBox>
 </p>
     <p>
-        <asp:Button ID="Button3" runat="server" Text="Delete" />
+        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Delete" />
 </p>
 <p>
     Instructors:</p>

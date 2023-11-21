@@ -14,6 +14,7 @@ namespace Assignment4.InstructorsKR
         string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bdcar\\Downloads\\KarateSchool(1)\\KarateSchool(5).mdf;Integrated Security=True;Connect Timeout=30";
         protected void Page_Load(object sender, EventArgs e)
         {
+            // security
             dbcon = new KarateDataContext(conn);
 
             if (HttpContext.Current.Session["userType"].ToString().Trim() == "Member" ||
@@ -27,6 +28,7 @@ namespace Assignment4.InstructorsKR
                 Response.Redirect("Logon.aspx", true);
             }
 
+            // gridview implemented and shown
             Instructor myUser = (from x in dbcon.Instructors
                                  where x.InstructorID == Convert.ToInt32(HttpContext.Current.Session["userID"])
                                  select x).First();

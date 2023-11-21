@@ -19,6 +19,7 @@ namespace Assignment4
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
         {
+            // username and password stored
             string nUserName = Login1.UserName;
             string nPassword = Login1.Password;
 
@@ -34,6 +35,7 @@ namespace Assignment4
                               && x.UserPassword == HttpContext.Current.Session["uPass"].ToString()
                               select x).First();
 
+            // user is redirected
             if (myUser != null)
             {
                 //Add UserID and User type to the Session

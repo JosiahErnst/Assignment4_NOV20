@@ -15,6 +15,7 @@ namespace Assignment4.MembersKR
         string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bdcar\\Downloads\\KarateSchool(1)\\KarateSchool(5).mdf;Integrated Security=True;Connect Timeout=30";
         protected void Page_Load(object sender, EventArgs e)
         {
+            // security put in place
             dbcon = new KarateDataContext(connString);
             if (Session.Count != 0)
             {
@@ -29,6 +30,7 @@ namespace Assignment4.MembersKR
                     Response.Redirect("Logon.aspx", true);
                 }
 
+                // grid view shown
                 Member myUser = (from x in dbcon.Members
                                  where x.Member_UserID == Convert.ToInt32(HttpContext.Current.Session["userID"])
                                  select x).First();
