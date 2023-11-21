@@ -53,14 +53,14 @@ namespace Assignment4
 
                 FormsAuthentication.RedirectFromLoginPage(HttpContext.Current.Session["nUserName"].ToString(), true);
 
-                Response.Redirect("~/Member.aspx");
+                Response.Redirect("~/MembersKR/memberspage.aspx");
             }
             else if (myUser != null && HttpContext.Current.Session["userType"].ToString().Trim() == "Instructor")
             {
 
                 FormsAuthentication.RedirectFromLoginPage(HttpContext.Current.Session["nUserName"].ToString(), true);
 
-                Response.Redirect("~/Instructor.aspx");
+                Response.Redirect("~/InstructorsKR/instructorpage.aspx");
             }
             else
                 Response.Redirect("Logon.aspx", true);
